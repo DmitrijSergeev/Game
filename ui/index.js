@@ -1,11 +1,9 @@
-import {getGooglePoints, getPlayerPoints} from "../core/state-manager.js";
+import {AppComponent} from "./components/App.component.js";
 
 const rootElement = document.getElementById('root');
 
 rootElement.innerHTML = '';
 
-const googlePoints = getGooglePoints();
-const playerOnePoints = getPlayerPoints(0);
-const playerTwoPoints = getPlayerPoints(1);
+const appComponent = AppComponent();
 
-rootElement.append(`Player1: ${googlePoints}, Player2: ${playerOnePoints}, Google: ${playerTwoPoints}`);
+rootElement.append(appComponent.element);
