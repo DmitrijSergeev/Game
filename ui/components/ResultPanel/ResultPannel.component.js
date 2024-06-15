@@ -5,15 +5,14 @@ export function ResultPanelComponent() {
 
     element.classList.add('result-panel');
 
-    async function render() {
-        const googlePoints = await getGooglePoints();
-        const playerOnePoints = await getPlayerPoints(1);
-        const playerTwoPoints = await getPlayerPoints(2);
-
-        element.append(`Player1: ${playerOnePoints}, Player2: ${playerTwoPoints}, Google: ${googlePoints}`)
-    }
-
-    render();
+    render(element);
 
     return {element};
+}
+async function render(element) {
+    const googlePoints = await getGooglePoints();
+    const playerOnePoints = await getPlayerPoints(1);
+    const playerTwoPoints = await getPlayerPoints(2);
+
+    element.append(`Player1: ${playerOnePoints}, Player2: ${playerTwoPoints}, Google: ${googlePoints}`)
 }
