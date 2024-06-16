@@ -7,5 +7,6 @@ export function CellComponent(x, y) {
 }
 
 async function render(element, x, y){
+
     element.append(`${x}, ${y}`)
 }
