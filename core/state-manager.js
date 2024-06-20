@@ -10,13 +10,25 @@ const _state = {
             x: 3,
             y: 1
         },
-        players: [{x:2, y:2}, {x:3, y:3}]
+        players: [{x: 1, y: 1}, {x: 3, y: 3}]
     },
     points: {
         google: 12,
         players: [10, 11]
     },
 }
+
+let _observer = () => {
+}
+
+export function subscribe(observer) {
+    _observer = observer
+}
+
+setInterval(() => {
+    _state.positions.google = {x: 2, y: 2}
+    _observer();
+}, 1000)
 
 export async function getGooglePoints() {
     return _state.points.google
@@ -40,10 +52,11 @@ export async function getGridSize() {
     return {..._state.settings.gridSize}
 }
 
-export async function getGooglePosition(){
+export async function getGooglePosition() {
     return {..._state.positions.google}
 }
-export async function getPlayerPosition(playerNumber){
+
+export async function getPlayerPosition(playerNumber) {
     const playerIndex = playerNumber - 1;
     if (playerIndex < 0 || playerIndex > _state.points.players.length - 1) {
         throw new Error('Incorrect player number')
