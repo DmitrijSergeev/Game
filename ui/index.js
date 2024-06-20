@@ -1,5 +1,5 @@
 import {AppComponent} from "./components/App.component.js";
-import {subscribe} from "../core/state-manager.js";
+import {subscribe, unSubscribe} from "../core/state-manager.js";
 
 const rootElement = document.getElementById('root');
 
@@ -13,3 +13,4 @@ function renderApp (){
 renderApp()
 
 subscribe(renderApp)
+//unSubscribe(renderApp)

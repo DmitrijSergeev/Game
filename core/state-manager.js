@@ -18,16 +18,39 @@ const _state = {
     },
 }
 
-let _observer = () => {
-}
+let _observers = []
 
 export function subscribe(observer) {
-    _observer = observer
+    _observers.push(observer)
+}
+
+export function unSubscribe(observer) {
+    _observers = _observers.filter(o => o !== observer)
+}
+
+function _notifyObservers() {
+    _observers.forEach(o => {
+        try {
+            o();
+        } catch (error) {
+            console.error(error)
+        }
+    })
+}
+
+function _jumpGoogleToNewPosition (){
+    const newPosition = {..._state.positions.google}
+
+    do {
+        newPosition.x = getGenerateNewNumber(0, _state.settings.gridSize.columnsCount)
+        newPosition.y = getGenerateNewNumber(0, _state.settings.gridSize.rowsCount)
+    }
 }
 
 setInterval(() => {
-    _state.positions.google = {x: 2, y: 2}
-    _observer();
+    _jumpGoogleToNewPosition()
+    //_state.points.google++
+    _notifyObservers();
 }, 1000)
 
 export async function getGooglePoints() {
