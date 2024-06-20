@@ -7,7 +7,7 @@ const _state = {
     },
     positions: {
         google: {
-            x: 1,
+            x: 3,
             y: 1
         },
         players: [{x:2, y:2}, {x:3, y:3}]
